@@ -1,0 +1,23 @@
+name: Job Scrapper CI
+
+on:
+  push:
+    branches: [ "main" ]
+  schedule:
+    - cron: 0 */6 * * *
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    # - name: Build the Docker image
+    #   run: docker build . --file Dockerfile --tag job-scrapper:$(date +%s)
+    - uses: docker/build-push-action@v2
+      with:
+        tags: job-scrapper:latest
+        push: false
+    - uses: addnab/docker-run-action@v3
+      with:
+        image: job-scrapper:latest
+
