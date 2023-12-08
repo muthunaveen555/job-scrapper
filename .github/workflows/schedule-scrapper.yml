@@ -16,6 +16,6 @@ jobs:
     - name: ls command
       run: ls
     - name: Build the Docker image
-      run: docker build . --file job-scraper/Dockerfile --tag job-scraper:$(date +%d)
+      run: docker build job-scraper/ --tag job-scraper:$(date +%d)
     - name: run the Docker image
       run: docker run job-scraper:$(date +%d)
