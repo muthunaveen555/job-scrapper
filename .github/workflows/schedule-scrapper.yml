@@ -11,13 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    # - name: Build the Docker image
-    #   run: docker build . --file Dockerfile --tag job-scrapper:$(date +%s)
-    - uses: docker/build-push-action@v2
-      with:
-        tags: job-scrapper:latest
-        file: job-scrapper/Dockerfile
-        push: false
-    - uses: addnab/docker-run-action@v3
-      with:
-        image: job-scrapper:latest
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag job-scrapper:$(date +%d)
+    - name: run the Docker image
+      run: docker run job-scrapper:$(date +%d)
