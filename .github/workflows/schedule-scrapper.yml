@@ -11,7 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    - name: print working directory
+      run: pwd
+    - name: ls command
+      run: ls
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag job-scrapper:$(date +%d)
+      run: docker build . --file job-scrapper/Dockerfile --tag job-scrapper:$(date +%d)
     - name: run the Docker image
       run: docker run job-scrapper:$(date +%d)
